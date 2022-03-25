@@ -43,6 +43,7 @@ methods: {
 
 ## component 만들기, 사용하기
 - ### Modal.vue 컴포넌트 만들기
+  - editor 에서 'vue' 타이핑하고 tab 키 입력
 ```html
 <!-- src/components/Modal.vue -->
 <template>
@@ -325,4 +326,46 @@ export default {
       <p>modal2 content</p>
     </Modal>
   </teleport>
+```
+
+## 2-way data binding
+- input 에 값을 입력하면 model 의 값이 변한다
+- model 의 값을 변경하면 input 의 내용도 변경된다
+```html
+<!-- v-model 을 사용 -->
+<template>
+  <form>
+      <label>Email:</label>
+      <input type="email" required v-model="email"> <!-- here -->
+  </form>
+  <p>{{ email }}</p>
+  <button @click="handleClick">click me</button>
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+            email: '' // here
+        };
+    },
+    methods: {
+        handleClick() {
+            this.email = 'aa'; // here
+        }
+    }
+}
+</script>
+```
+
+## form submit (prevent default)
+```html
+  <form @submit.prevent="handleSubmit">
+```
+```javascript
+    methods: {
+        handleSubmit() {
+            console.log('handleSubmit');
+        }
+    }
 ```
