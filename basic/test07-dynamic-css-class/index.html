@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+    
+    <style>
+        .box {
+            padding: 100px 0;
+            width: 400px;
+            text-align: center;
+            background: #ddd;
+            margin: 20px;
+            display: inline-block;
+        }
+        img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            object-position: top;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            list-style-type: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+            margin: 0px auto 10px;
+            border-radius: 10px;
+        }
+        li.fav {
+            border: 10px solid orange;
+        }
+    </style>
+    
+</head>
+
+<body>
+    
+    <div id="app">
+
+        <ul>
+            <li v-for="blog in blogs" :class="{ fav: blog.isFav }">
+                <h2>{{ blog.title }}</h2>
+                <p>{{ blog.content }}</p>
+                <!-- <img v-bind:src="blog.img" v-bind:title="blog.title"> -->
+                <img :src="blog.img" :title="blog.title">
+            </li>
+        </ul>
+
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
