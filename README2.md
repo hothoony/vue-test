@@ -10,7 +10,7 @@ vue create modal-proj
 - babel
 - version 3
 - dedicated config files
-- no
+- save as a preset / no
 
 npm run serve
 ```
