@@ -84,7 +84,7 @@ export default {
 /* src/assets/global.css */
 ```
 ```javascript
-// main.js
+// src/main.js
 import './assets/global.css';
 ```
 
@@ -290,7 +290,7 @@ export default {
   </div>
 ```
 - v-slot
-```
+```html
 <template v-slot:links>
 
 </template>
@@ -360,12 +360,191 @@ export default {
 
 ## form submit (prevent default)
 ```html
-  <form @submit.prevent="handleSubmit">
+<form @submit.prevent="handleSubmit">
 ```
 ```javascript
-    methods: {
-        handleSubmit() {
-            console.log('handleSubmit');
+  methods: {
+      handleSubmit() {
+          console.log('handleSubmit');
+      }
+  }
+```
+
+## router
+- src/router/index.js
+```javascript
+const routes = [
+  {
+    path: '/jobs',
+    name: 'Jobs',
+    component: Jobs
+  },
+  {
+    path: '/jobs/:id',
+    name: 'JobDetails',
+    component: JobDetails
+  }
+]
+```
+
+- src/App.vue
+```html
+<router-link :to="{ name: 'Jobs' }">Jobs</router-link>
+```
+
+- src/views/jobs/Jobs.vue
+```html
+  <div v-for="job in jobs" :key="job.id">
+      <router-link :to="{ name: 'JobDetails', params: {id: job.id} }">
+          <h2>{{ job.title }}</h2>
+      </router-link>
+  </div>
+```
+
+- src/views/jobs/JobDetails.vue
+```html
+<p>{{ $route.params.id }}</p>
+```
+```javascript
+export default {
+    data() {
+        return {
+            id: this.$route.params.id
         }
     }
+}
+````
+
+## router props
+- src/router/index.js
+```javascript
+const routes = [
+  {
+    path: '/jobs/:id',
+    name: 'JobDetails',
+    component: JobDetails,
+    props: true /* here */
+  }
+]
+```
+- src/views/jobs/JobDetails.vue
+```html
+<template>
+  <p>{{ id }}</p> <!-- here -->
+</template>
+```
+```javascript
+export default {
+  props: ['id'], /* here */
+}
+```
+
+## redirect
+- src/router/index.js
+```javascript
+const routes = [
+  {
+    path: '/all-jobs',
+    redirect: '/jobs'
+  }
+]
+```
+
+## 404 page
+- src/router/index.js
+```javascript
+import NotFound from '../views/NotFound.vue'
+
+const routes = [
+  {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: NotFound
+  }
+]
+```
+- src/views/NotFound.vue
+```html
+<template>
+  <h2>404</h2>
+  <h3>Page not found</h3>
+</template>
+```
+
+## router | redirect, back, forward
+```javascript
+// redirect
+this.$router.push({name: 'Home'});
+// back
+this.$router.go(-1);
+// forward
+this.$router.go(1);
+```
+
+## json-server
+```
+npm install json-server
+```
+```
+json-server --watch data/db.json --port 3000
+```
+
+## fetch data list
+- src/views/Jobs.vue
+```html
+<template>
+  <h1>Jobs</h1>
+  <div v-for="job in jobs" :key="job.id"> <!-- here -->
+      <router-link :to="{ name: 'JobDetails', params: {id: job.id} }">
+          <h2>{{ job.title }}</h2>
+      </router-link>
+  </div>
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+            jobs: [] // here
+        }
+    },
+    mounted() { // here
+        fetch('http://localhost:3000/jobs')
+            .then(res => res.json())
+            .then(data => this.jobs = data)
+            .catch(err => console.error(err.message))
+    }
+}
+</script>
+```
+
+## fetch data detail
+- src/views/jobs/JobDetails.vue
+```html
+<template>
+  <h1>JobDetails</h1>
+  <!-- <p>{{ $route.params.id }}</p> -->
+  <!-- <p>{{ id }}</p> -->
+  <p>{{ job && job.id }}</p>
+  <p>{{ job && job.title }}</p>
+  <p>{{ job && job.content }}</p>
+</template>
+
+<script>
+export default {
+    props: ['id'],
+    data() {
+        return {
+            id: this.$route.params.id,
+            job: null
+        }
+    },
+    mounted() {
+        fetch('http://localhost:3000/jobs/' + this.id)
+          .then(res => res.json())
+          .then(data => this.job = data)
+          .catch(err => console.error(err.message))
+    }
+}
+</script>
 ```
