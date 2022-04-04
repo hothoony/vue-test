@@ -16,7 +16,7 @@ npm run serve
 ```
 
 ## npm run
-```bash
+```shell
 ## development
 $ npm run serve
 
