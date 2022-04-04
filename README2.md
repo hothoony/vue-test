@@ -1,11 +1,13 @@
 ## project setup
 - install node
+- vue cli 설치
+  ```bash
+  ## vue cli 설치
+  $ npm install -g @vue/cli
+  ```
 
-## npm install
+## vue 프로젝트 생성
 ```bash
-## vue cli 설치
-$ npm install -g @vue/cli
-
 ## vue 프로젝트 생성
 $ vue create modal-proj
 - Manually select features
@@ -15,9 +17,10 @@ $ vue create modal-proj
 - save as a preset / no
 ```
 
-## npm run
+## vue 프로젝트 실행
 ```bash
 ## 개발 실행
+$ npm install ## 의존성 설치
 $ npm run serve
 
 ## 프로덕션 실행
