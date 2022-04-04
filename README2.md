@@ -575,3 +575,6 @@ export default {
 ```
 - `setup()` 메소드에서 2-way binding 을 사용하려면 `ref`, `reactive` 를 사용해야 하나 `reactive` 를 primitive 값 변경이 안된다
 - `ref` 를 사용
+
+## 기타
+- Vue, Vuetify, Electron
