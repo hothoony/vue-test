@@ -329,8 +329,8 @@ export default {
 ```
 
 ## 2-way data binding
-- input 에 값을 입력하면 model 의 값이 변한다
-- model 의 값을 변경하면 input 의 내용도 변경된다
+- input 에 값을 입력하면 model 의 값이 변경된다
+- model 값이 변경되면 input 의 내용도 변경된다
 ```html
 <!-- v-model 을 사용 -->
 <template>
@@ -482,11 +482,12 @@ this.$router.go(1);
 ```
 
 ## json-server
-```
-npm install json-server
-```
-```
-json-server --watch data/db.json --port 3000
+```bash
+## json-server 설치
+$ npm install json-server
+
+## data/db.json 파일을 rest api 로 서비스
+$ json-server --watch data/db.json --port 3000
 ```
 
 ## fetch data list
