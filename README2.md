@@ -1,14 +1,12 @@
 ## project setup
-- install node
+- node 설치
 - vue cli 설치
   ```bash
-  ## vue cli 설치
   $ npm install -g @vue/cli
   ```
 
 ## vue 프로젝트 생성
 ```bash
-## vue 프로젝트 생성
 $ vue create modal-proj
 - Manually select features
 - babel
