@@ -15,6 +15,15 @@ vue create modal-proj
 npm run serve
 ```
 
+## npm run
+```bash
+## development
+$ npm run serve
+
+## production
+$ npm run build
+```
+
 ## Vue Component (App.vue)
 - ### 3개 블럭으로 구성
 ```html
