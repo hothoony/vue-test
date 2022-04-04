@@ -2,7 +2,6 @@
 
 ## 개발환경 셋팅
 
-- ### vscode
 - ### vscode plugins
     - Live Server
     - Vetur
@@ -12,13 +11,19 @@
 - SPA
 - Widget
 
-## vue script 삽입
+## vue widget
+- ### index.html
 ```html
+<!-- script 삽입 -->
 <script src="https://unpkg.com/vue@3.0.2"></script>
-```
 
-## app.js
+<!-- app container -->
+<div id="app">
+</div>
+```
+- ### app.js
 ```javascript
+// app 생성
 const app = Vue.createApp({
     data() {
         return {
@@ -36,11 +41,8 @@ const app = Vue.createApp({
     }
 })
 
+// div 에 마운트
 app.mount('#app');
-```
-```html
-<div id="app">
-</div>
 ```
 
 ## print variable
@@ -48,7 +50,7 @@ app.mount('#app');
 <div>{{ variable }}</div>
 ```
 
-## mouse event
+## mouse event handling
 ```html
 <!-- basic -->
 <button v-on:click="handleClick">
@@ -80,6 +82,8 @@ app.mount('#app');
         }
     }
 ```
+
+## for loop
 ```html
 <li v-for="blog in filterBlogs">
 ```
