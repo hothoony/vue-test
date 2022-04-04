@@ -13,17 +13,14 @@ $ vue create modal-proj
 - version 3
 - dedicated config files
 - save as a preset / no
-
-## 개발 실행
-$ npm run serve
 ```
 
 ## npm run
 ```bash
-## development
+## 개발 실행
 $ npm run serve
 
-## production
+## 프로덕션 실행
 $ npm run build
 ```
 
