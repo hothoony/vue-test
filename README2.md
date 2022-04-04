@@ -2,21 +2,21 @@
 - install node
 
 ## npm install
-```shell
-npm install -g @vue/cli
+```bash
+$ npm install -g @vue/cli
 
-vue create modal-proj
+$ vue create modal-proj
 - Manually select features
 - babel
 - version 3
 - dedicated config files
 - save as a preset / no
 
-npm run serve
+$ npm run serve
 ```
 
 ## npm run
-```shell
+```bash
 ## development
 $ npm run serve
 
