@@ -3,8 +3,10 @@
 
 ## npm install
 ```bash
+## vue cli 설치
 $ npm install -g @vue/cli
 
+## vue 프로젝트 생성
 $ vue create modal-proj
 - Manually select features
 - babel
@@ -12,6 +14,7 @@ $ vue create modal-proj
 - dedicated config files
 - save as a preset / no
 
+## 개발 실행
 $ npm run serve
 ```
 
