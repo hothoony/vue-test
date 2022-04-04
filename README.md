@@ -45,27 +45,67 @@ const app = Vue.createApp({
 app.mount('#app');
 ```
 
-## print variable
+## binding
+- `{{ variable }}`
 ```html
-<div>{{ variable }}</div>
-```
+<template>
+    <div>{{ myVar1 }}</div> <!-- myVar1 바인딩 -->
+</template>
 
-## mouse event handling
-```html
-<!-- basic -->
-<button v-on:click="handleClick">
-
-<!-- shortcut -->
-<button @click="handleClick">
+<script>
+export default {
+  data() {
+    return {
+      myVar1: 'hello world', // myVar1 정의
+    }
+  },
+</script>
 ```
 
 ## attribute binding
+- `v-bind:attribute`
+- `:attribute`
 ```html
-<!-- basic -->
-<img v-bind:src="blog.img">
+<template>
+    <!-- basic -->
+    <h4 v-bind:style="myStyle">this is heading 1</h4> <!-- myStyle 바인딩 -->
 
-<!-- shortcut -->
-<img :src="blog.img">
+    <!-- shortcut -->
+    <h4 :style="myStyle">this is heading 2</h4> <!-- myStyle 바인딩 -->
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      myStyle: 'color: red;', // myStyle 정의
+    }
+  },
+}
+</script>
+```
+
+## mouse click event handling
+- `v-on:event`
+- `@event`
+```html
+<template>
+    <!-- basic -->
+    <button v-on:click="handleClick">click btn 1</button>
+
+    <!-- shortcut -->
+    <button @click="handleClick">click btn 2</button>
+</template>
+
+<script>
+export default {
+  methods: {
+      handleClick(e) {
+          console.log(e.target);
+      }
+  },
+}
+</script>
 ```
 
 ## dynamic css class
