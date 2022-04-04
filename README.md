@@ -1,4 +1,4 @@
-[README2](README2.md)
+# [README2](README2.md)
 
 ## 개발환경 셋팅
 
