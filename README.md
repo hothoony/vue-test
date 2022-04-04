@@ -125,5 +125,8 @@ export default {
 
 ## for loop
 ```html
-<li v-for="blog in filterBlogs">
+<li v-for="blog in blogs" :key="blog">{{ blog }}</li>
+```
+```html
+<li v-for="(blog, i) in blogs" :key="i">{{ blog }}, {{ i }}</li>
 ```
