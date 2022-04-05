@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+    
+    <style>
+        .box {
+            padding: 100px 0;
+            width: 400px;
+            text-align: center;
+            background: #ddd;
+            margin: 20px;
+            display: inline-block;
+        }
+    </style>
+    
+</head>
+
+<body>
+    
+    <div id="app">
+
+        <ul>
+            <li v-if="showBlog1">
+                <h2>{{ blogs[0].title }}</h2>
+                <p>{{ blogs[0].content }}</p>
+            </li>
+            <li v-if="showBlog2">
+                <h2>{{ blogs[1].title }}</h2>
+                <p>{{ blogs[1].content }}</p>
+            </li>
+            <li v-if="showBlog3">
+                <h2>{{ blogs[2].title }}</h2>
+                <p>{{ blogs[2].content }}</p>
+            </li>
+        </ul>
+
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
