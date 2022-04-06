@@ -4,6 +4,10 @@
   ```bash
   $ npm install -g @vue/cli
   ```
+  ```
+  $ npm install vue-router
+  $ npm install vue bootstrap-vue bootstrap
+  ```
 
 ## vue 프로젝트 생성
 ```bash
@@ -23,6 +27,22 @@ $ npm run serve
 
 ## 프로덕션 실행
 $ npm run build
+```
+
+## vue 프로젝트 파일 구조
+```
+proj-name/
+  node-modules/
+  public/
+    index.html
+  src/
+    assets/
+    components/
+    router/
+    views/
+    App.vue
+    main.js
+  package.json
 ```
 
 ## .vue 파일 구성 (App.vue)
