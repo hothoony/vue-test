@@ -1,10 +1,15 @@
 ## vue 프로젝트 셋팅
+- vscode plugins
+    - Live Server
+    - Vetur
+    - Meterial Icon Theme
 - node 설치
 - vue cli 설치
   ```bash
   $ npm install -g @vue/cli
   ```
-  ```
+  ```bash
+  ## 기타
   $ npm install vue-router
   $ npm install vue bootstrap-vue bootstrap
   ```
@@ -12,17 +17,19 @@
 ## vue 프로젝트 생성
 ```bash
 $ vue create modal-proj
-- Manually select features
-- babel
-- version 3
-- dedicated config files
-- save as a preset / no
+  - Manually select features
+  - babel
+  - version 3
+  - dedicated config files
+  - save as a preset / no
 ```
 
 ## vue 프로젝트 실행
 ```bash
+## 의존성 설치
+$ npm install
+
 ## 개발 실행
-$ npm install ## 의존성 설치
 $ npm run serve
 
 ## 프로덕션 실행
@@ -31,7 +38,7 @@ $ npm run build
 
 ## vue 프로젝트 폴더 구조
 ```
-proj-name/
+vue-proj-name/
   node-modules/
   public/
     index.html
@@ -52,95 +59,90 @@ proj-name/
 </template>
 
 <script>
+export default {
+}
 </script>
 
 <style>
 </style>
 ```
 
-## script 블럭 구조
+## `<script>` 블럭 구조
 ```html
 <script>
-  import HomeView from './views/HomeView.vue';
+import HomeView from './views/HomeView.vue';
 
-  export default {
-    name: 'App',
-    components: {
-      HomeView,
-    },
-    props: [],
-    data() {
-      return {
-        appTitle: '앱 제목',
-      }
-    },
-    methods: {
-      handleClick(e) {
-        console.log('handleClick', e.target);
-        console.log(this.appTitle);
-      }
-    },
-    watch: {
-      appTitle() {
-        console.log('watch appTitle', appTitle);
-      }
-    },
-    // Lifecycle Hook
-    beforeCreate() {
-      console.log('beforeCreate');
-    },
-    created() {
-      console.log('created');
-    },
-    beforeMount() {
-      console.log('beforeMount');
-    },
-    mounted() {
-      console.log('mounted');
-    },
-    beforeUpdate() {
-      console.log('beforeUpdate');
-    },
-    updated() {
-      console.log('updated');
-    },
-    beforeUnmount() {
-      console.log('beforeUnmount');
-    },
-    unmounted() {
-      console.log('unmounted');
-    },
-    errorCaptured() {
-      console.log('errorCaptured');
-    },
-    activated() {
-      console.log('activated');
-    },
-    deactivated() {
-      console.log('deactivated');
-    },
-    renderTracked() {
-      console.log('renderTracked');
-    },
-    renderTriggered() {
-      console.log('renderTriggered');
-    },
-    beforeDestroy() {
-      console.log('beforeDestroy');
-    },
-    destroyed() {
-      console.log('destroyed');
-    },
-  }
+export default {
+  name: 'App',
+  components: {
+    HomeView,
+  },
+  props: [],
+  data() {
+    return {
+      appTitle: '앱 제목',
+    }
+  },
+  methods: {
+    handleClick(e) {
+      console.log('handleClick', e.target);
+      console.log(this.appTitle);
+    }
+  },
+  watch: {
+    appTitle() {
+      console.log('watch appTitle', appTitle);
+    }
+  },
+  // Lifecycle Hook
+  beforeCreate() {
+    console.log('beforeCreate');
+  },
+  created() {
+    console.log('created');
+  },
+  beforeMount() {
+    console.log('beforeMount');
+  },
+  mounted() {
+    console.log('mounted');
+  },
+  beforeUpdate() {
+    console.log('beforeUpdate');
+  },
+  updated() {
+    console.log('updated');
+  },
+  beforeUnmount() {
+    console.log('beforeUnmount');
+  },
+  unmounted() {
+    console.log('unmounted');
+  },
+  errorCaptured() {
+    console.log('errorCaptured');
+  },
+  activated() {
+    console.log('activated');
+  },
+  deactivated() {
+    console.log('deactivated');
+  },
+  renderTracked() {
+    console.log('renderTracked');
+  },
+  renderTriggered() {
+    console.log('renderTriggered');
+  },
+  beforeDestroy() {
+    console.log('beforeDestroy');
+  },
+  destroyed() {
+    console.log('destroyed');
+  },
+}
 </script>
 ```
-
-## 개발환경 셋팅
-
-- ### vscode plugins
-    - Live Server
-    - Vetur
-    - Meterial Icon Theme
 
 ## vue 제작 형태
 - SPA
@@ -149,7 +151,7 @@ proj-name/
 ## vue widget
 - ### index.html
 ```html
-<!-- script 삽입 -->
+<!-- vue js script 삽입 -->
 <script src="https://unpkg.com/vue@3.0.2"></script>
 
 <!-- app container -->
@@ -243,6 +245,16 @@ export default {
 </script>
 ```
 
+## event modifier
+- `@click.self`
+- `@click.right` 마우스 우클릭
+- `@click.shift` shift 키보드 누른채로 클릭
+- `@submit.prevent` e.preventDefault()
+```html
+<!-- modal 팝업창을 클릭해도 반응하도록 변경 -->
+<button @click.self="closeModal">
+```
+
 ## dynamic css class
 ```html
 <li :class="{ fav: blog.isFav }">
@@ -313,21 +325,6 @@ export default {
   }
 }
 </script>
-```
-
-## style scoped
-```html
-<style scoped>
-</style>
-```
-
-## global css
-```css
-/* src/assets/global.css */
-```
-```javascript
-// src/main.js
-import './assets/global.css';
 ```
 
 ## props
@@ -502,16 +499,21 @@ export default {
 </script>
 ```
 
-## event modifier
+## style scoped
 ```html
-<!-- modal 팝업창을 클릭해도 반응하도록 변경 -->
-<button @click.self="closeModal">
+<style scoped>
+</style>
+```
 
-<!-- 마우스 우클릭 -->
-@click.right
-
-<!-- shift 키보드 누른채로 클릭 -->
-@click.shift
+## global css 사용
+- `global.css` 파일 생성
+```css
+/* src/assets/global.css */
+```
+- `global.css` 임포트
+```javascript
+// src/main.js
+import './assets/global.css';
 ```
 
 ## slot (default slot)
