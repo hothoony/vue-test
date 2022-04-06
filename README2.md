@@ -1,4 +1,4 @@
-## project setup
+## vue 프로젝트 셋팅
 - node 설치
 - vue cli 설치
   ```bash
@@ -25,7 +25,7 @@ $ npm run serve
 $ npm run build
 ```
 
-## Vue Component (App.vue)
+## .vue 파일 구성 (App.vue)
 - ### 3개 블럭으로 구성
 ```html
 <template>
@@ -36,6 +36,23 @@ $ npm run build
 
 <style>
 </style>
+```
+
+## script 블럭 구성
+```html
+<script>
+  export default {
+    name: 'HomeView',
+    components: {},
+    props: {},
+    methods: {
+      handleClick() {}
+    },
+    data() {
+      return {}
+    },
+  }
+</script>
 ```
 
 ## ref
