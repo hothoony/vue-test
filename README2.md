@@ -75,17 +75,18 @@ proj-name/
     data() {
       return {}
     },
+    // Lifecycle
     beforeCreate() {},
     created() {},
     beforeMount() {},
     mounted() {},
     beforeUpdate() {},
     updated() {},
-    activated() {},
-    deactivated() {},
     beforeUnmount() {},
     unmounted() {},
     errorCaptured() {},
+    activated() {},
+    deactivated() {},
     renderTracked() {},
     renderTriggered() {},
   }
