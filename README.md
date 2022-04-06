@@ -1,16 +1,3 @@
-<details>
-  <summary>for details...</summary>
-  - 11
-  ```
-  details content here
-  ```
-  - 22
-  ```
-  <html></html>
-  ```
-</details>
-
-
 ## vue 프로젝트 셋팅
 - vscode 설치
 - vscode plugins 설치
