@@ -83,7 +83,7 @@ export default {
 </script>
 ```
 
-## mouse click event handling
+## event handling
 - `v-on:event`
 - `@event`
 ```html
@@ -160,7 +160,7 @@ $ npm run serve
 $ npm run build
 ```
 
-## vue 프로젝트 파일 구조
+## vue 프로젝트 폴더 구조
 ```
 proj-name/
   node-modules/
@@ -176,7 +176,7 @@ proj-name/
   package.json
 ```
 
-## .vue 파일 구성 (App.vue)
+## .vue 파일 구조
 - ### 3개 블럭으로 구성
 ```html
 <template>
@@ -189,7 +189,7 @@ proj-name/
 </style>
 ```
 
-## script 블럭 구성
+## script 블럭 구조
 ```html
 <script>
   import HomeView from './views/HomeView.vue';
@@ -598,14 +598,17 @@ export default {
 
 ## form submit (prevent default)
 ```html
-<form @submit.prevent="handleSubmit">
-```
-```javascript
+<template>
+  <form @submit.prevent="handleSubmit">
+</template>
+
+<script>
   methods: {
       handleSubmit() {
           console.log('handleSubmit');
       }
   }
+</script>
 ```
 
 ## router
