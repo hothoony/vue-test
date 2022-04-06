@@ -41,9 +41,13 @@ $ npm run build
 ## script 블럭 구성
 ```html
 <script>
+  import HomeView from './views/HomeView.vue';
+
   export default {
-    name: 'HomeView',
-    components: {},
+    name: 'App',
+    components: {
+      HomeView,
+    },
     props: {},
     methods: {
       handleClick() {}
