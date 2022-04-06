@@ -284,15 +284,20 @@ export default {
 
 ## ref
 ```html
-<input type="text" ref="name"> <!-- here -->
-<button @click="handleClick">click here</button>
-```
-```javascript
-methods: {
-    handleClick() {
-        console.log(this.$refs.name); // here
-    }
+<template>
+  <input type="text" ref="name"> <!-- here -->
+  <button @click="handleClick">click here</button>
+</template>
+
+<script>
+export default {
+  methods: {
+      handleClick() {
+          console.log(this.$refs.name); // here
+      }
+  }
 }
+</script>
 ```
 
 ## component 만들기, 사용하기
@@ -444,6 +449,7 @@ export default {
   ```
 
 ## 자식 컴포넌트에서 event 발생시키기
+- `this.$emit('close');`
 - Modal.vue
 ```html
 <!-- Modal.vue -->
@@ -800,6 +806,11 @@ export default {
 ```
 
 ## composition api
+- `setup()` 메소드 하나에서 모두 사용
+- `setup()` 메소드에서 2-way binding 을 사용하려면
+  - `ref` 나 `reactive` 를 사용하면 되는데
+  - `reactive` 는 primitive 값이 변경되지 안된다
+  - `ref` 를 사용
 ```javascript
 import { ref, reactive } from '@vue/reactivity'
 
@@ -812,8 +823,6 @@ export default {
   }
 }
 ```
-- `setup()` 메소드에서 2-way binding 을 사용하려면 `ref`, `reactive` 를 사용해야 하나 `reactive` 를 primitive 값 변경이 안된다
-- `ref` 를 사용
 
 ## 기타
 - Vue, Vuetify, Electron
