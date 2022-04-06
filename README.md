@@ -82,7 +82,7 @@ export default {
     HomeView,
   },
   props: [
-    
+
   ],
   data() {
     return {
@@ -319,8 +319,7 @@ export default {
 ## for loop
 ```html
 <li v-for="blog in blogs" :key="blog">{{ blog }}</li>
-```
-```html
+
 <li v-for="(blog, i) in blogs" :key="i">{{ blog }}, {{ i }}</li>
 ```
 
@@ -346,6 +345,7 @@ export default {
 - ### Modal.vue 컴포넌트 만들기
 ```html
 <!-- src/components/Modal.vue -->
+
 <template>
     <div class="backdrop">
         <div class="modal">
@@ -357,6 +357,7 @@ export default {
 - ### Modal.vue 컴포넌트 사용하기
 ```html
 <!-- src/App.vue -->
+
 <template>
   <Modal /> <!-- here -->
 </template>
@@ -395,6 +396,7 @@ export default {
 - 자식 Component
   ```html
   <!-- Modal.vue -->
+
   <template>
       <div class="backdrop">
           <div class="modal">
@@ -415,6 +417,7 @@ export default {
 - 부모 Component
   ```html
   <!-- App.vue -->
+
   <template>
     <Modal :header="header" :message="message" /> <!-- here -->
   </template>
@@ -457,6 +460,7 @@ export default {
 - 부모 Component
   ```html
   <!-- App.vue -->
+
   <template>
     <Modal :header="header" :message="message" theme="sale" /> <!-- here -->
   </template>
@@ -464,6 +468,7 @@ export default {
 - 자식 Component
   ```html
   <!-- Modal.vue -->
+
   <template>
       <div class="backdrop">
           <div class="modal" :class="{ sale: theme === 'sale' }"> <!-- here -->
@@ -493,6 +498,7 @@ export default {
 - 자식 Component
   ```html
   <!-- Modal.vue -->
+
   <template>
       <div class="backdrop" @click="closeModal"> <!-- here -->
           <div class="modal">
@@ -516,6 +522,7 @@ export default {
 - 부모 Component
   ```html
   <!-- App.vue -->
+
   <template>
     <div v-if="showModal">
       <Modal @close="toggleModal" /> <!-- here, close 이벤트 리스닝 -->
@@ -564,8 +571,10 @@ import './assets/global.css';
 
 ## slot (default slot)
 - ### slot
+  - `<slot></slot>`
   ```html
   <!-- App.vue -->
+
   <Modal theme="sale" @close="toggleModal">
     <!-- slot 에 전달할 내용 -->
     <h1>title from app</h1>
@@ -575,12 +584,14 @@ import './assets/global.css';
   ```
   ```html
   <!-- Modal.vue -->
+
   <div class="modal" :class="{ sale: theme === 'sale' }">
     <slot></slot><!-- slot 태그 블럭은 전달되는 내용으로 대체된다 -->
   </div>
   ```
 
 - ### v-slot
+  - `v-slot:links`
   ```html
   <template v-slot:links>
 
@@ -588,8 +599,10 @@ import './assets/global.css';
   ```
 
 - ### named slot
-  - App.vue
+  - `<slot name="links"></slot>`
   ```html
+    <!-- App.vue -->
+
     <Modal theme="sale">
       <template v-slot:links> <!-- here -->
         <a href="#">sign up</a>
@@ -597,26 +610,30 @@ import './assets/global.css';
       </template>
     </Modal>
   ```
-  - Modal.vue
   ```html
+    <!-- Modal.vue -->
+
     <div class="modal">
       <slot name="links"></slot><!-- here -->
     </div>
   ```
 
 ## teleport component
-- index.html
+- `<teleport to="#modals" v-if="showModal">`
 ```html
+<!-- index.html -->
+
 <div id="modals"></div>
 ```
-- App.vue
 ```html
-  <teleport to="#modals" v-if="showModal">
-    <Modal @close="toggleModal">
-      <h1>modal2 title</h1>
-      <p>modal2 content</p>
-    </Modal>
-  </teleport>
+<!-- App.vue -->
+
+<teleport to="#modals" v-if="showModal">
+  <Modal @close="toggleModal">
+    <h1>modal2 title</h1>
+    <p>modal2 content</p>
+  </Modal>
+</teleport>
 ```
 
 ## form submit (prevent default)
@@ -637,115 +654,120 @@ import './assets/global.css';
 ```
 
 ## router
-- src/router/index.js
-  ```javascript
-  const routes = [
-    {
-      path: '/jobs',
-      name: 'Jobs',
-      component: Jobs
-    },
-    {
-      path: '/jobs/:id',
-      name: 'JobDetails',
-      component: JobDetails
-    }
-  ]
-  ```
+```javascript
+// src/router/index.js
 
-- src/App.vue
-  ```html
-  <router-link :to="{ name: 'Jobs' }">Jobs</router-link>
-  ```
-
-- src/views/jobs/Jobs.vue
-  ```html
-    <div v-for="job in jobs" :key="job.id">
-        <router-link :to="{ name: 'JobDetails', params: {id: job.id} }">
-            <h2>{{ job.title }}</h2>
-        </router-link>
-    </div>
-  ```
-
-- src/views/jobs/JobDetails.vue
-  ```html
-  <template>
-    <p>{{ $route.params.id }}</p>
-  </template>
-
-  <script>
-  export default {
-      data() {
-          return {
-              id: this.$route.params.id
-          }
-      }
+const routes = [
+  {
+    path: '/jobs',
+    name: 'Jobs',
+    component: Jobs
+  },
+  {
+    path: '/jobs/:id',
+    name: 'JobDetails',
+    component: JobDetails
   }
-  </script>
-  ````
+]
+```
+
+```html
+<!-- src/App.vue -->
+
+<router-link :to="{ name: 'Jobs' }">Jobs</router-link>
+```
+
+```html
+<!-- src/views/jobs/Jobs.vue -->
+
+<div v-for="job in jobs" :key="job.id">
+    <router-link :to="{ name: 'JobDetails', params: {id: job.id} }">
+        <h2>{{ job.title }}</h2>
+    </router-link>
+</div>
+```
+
+```html
+<!-- src/views/jobs/JobDetails.vue -->
+
+<template>
+  <p>{{ $route.params.id }}</p>
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+            id: this.$route.params.id
+        }
+    }
+}
+</script>
+````
 
 ## router props
-- src/router/index.js
-  ```javascript
-  const routes = [
-    {
-      path: '/jobs/:id',
-      name: 'JobDetails',
-      component: JobDetails,
-      props: true /* here */
-    }
-  ]
-  ```
+```javascript
+// src/router/index.js
 
-- src/views/jobs/JobDetails.vue
-  ```html
-  <template>
-    <p>{{ id }}</p> <!-- here -->
-  </template>
-
-  <script>
-  export default {
-    props: ['id'], /* here */
+const routes = [
+  {
+    path: '/jobs/:id',
+    name: 'JobDetails',
+    component: JobDetails,
+    props: true /* here */
   }
-  </script>
-  ```
+]
+```
+
+```html
+<!-- src/views/jobs/JobDetails.vue -->
+
+<template>
+  <p>{{ id }}</p> <!-- here -->
+</template>
+
+<script>
+export default {
+  props: ['id'], /* here */
+}
+</script>
+```
 
 ## redirect
-- src/router/index.js
-  ```javascript
-  const routes = [
-    {
-      path: '/all-jobs',
-      redirect: '/jobs'
-    }
-  ]
-  ```
+```javascript
+// src/router/index.js
+
+const routes = [
+  {
+    path: '/all-jobs',
+    redirect: '/jobs'
+  }
+]
+```
 
 ## 404 page
-- src/router/index.js
-  ```javascript
-  // src/router/index.js
-  
-  import NotFound from '../views/NotFound.vue'
+```javascript
+// src/router/index.js
 
-  const routes = [
-    {
-      path: '/:catchAll(.*)',
-      name: 'NotFound',
-      component: NotFound
-    }
-  ]
-  ```
+import NotFound from '../views/NotFound.vue'
 
-- src/views/NotFound.vue
-  ```html
-  <!-- src/views/NotFound.vue -->
+const routes = [
+  {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: NotFound
+  }
+]
+```
 
-  <template>
-    <h2>404</h2>
-    <h3>Page not found</h3>
-  </template>
-  ```
+```html
+<!-- src/views/NotFound.vue -->
+
+<template>
+  <h2>404</h2>
+  <h3>Page not found</h3>
+</template>
+```
 
 ## router | redirect, back, forward
 ```javascript
@@ -767,7 +789,6 @@ $ json-server --watch data/db.json --port 3000
 ```
 
 ## fetch data list
-- src/views/Jobs.vue
 ```html
 <!-- src/views/Jobs.vue -->
 
@@ -798,7 +819,6 @@ export default {
 ```
 
 ## fetch data detail
-- src/views/jobs/JobDetails.vue
 ```html
 <!-- src/views/jobs/JobDetails.vue -->
 
