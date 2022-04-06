@@ -1,3 +1,9 @@
+<details>
+  <summary>for details...</summary>
+  details content here
+</details>
+
+
 ## vue 프로젝트 셋팅
 - vscode 설치
 - vscode plugins 설치
