@@ -1,5 +1,6 @@
 ## vue 프로젝트 셋팅
-- vscode plugins
+- vscode 설치
+- vscode plugins 설치
     - Live Server
     - Vetur
     - Meterial Icon Theme
@@ -8,20 +9,23 @@
   ```bash
   $ npm install -g @vue/cli
   ```
+- 기타
   ```bash
-  ## 기타
+  ## vue-router
   $ npm install vue-router
+
+  ## bootstrap
   $ npm install vue bootstrap-vue bootstrap
   ```
 
 ## vue 프로젝트 생성
-```bash
+```shell
 $ vue create modal-proj
   - Manually select features
   - babel
   - version 3
-  - dedicated config files
-  - save as a preset / no
+  - dedicated config files (yes)
+  - save as a preset (no)
 ```
 
 ## vue 프로젝트 실행
@@ -554,45 +558,46 @@ import './assets/global.css';
 ```
 
 ## slot (default slot)
-- slot
-```html
-<!-- App.vue -->
+- ### slot
+  ```html
+  <!-- App.vue -->
   <Modal theme="sale" @close="toggleModal">
     <!-- slot 에 전달할 내용 -->
     <h1>title from app</h1>
     <p>content from app</p>
     <!-- slot 에 전달할 내용 -->
   </Modal>
-```
-```html
-<!-- Modal.vue -->
+  ```
+  ```html
+  <!-- Modal.vue -->
   <div class="modal" :class="{ sale: theme === 'sale' }">
     <slot></slot><!-- slot 태그 블럭은 전달되는 내용으로 대체된다 -->
   </div>
-```
-- v-slot
-```html
-<template v-slot:links>
+  ```
 
-</template>
-```
+- ### v-slot
+  ```html
+  <template v-slot:links>
 
-## named slot
-- App.vue
-```html
-  <Modal theme="sale">
-    <template v-slot:links> <!-- here -->
-      <a href="#">sign up</a>
-      <a href="#">more info</a>
-    </template>
-  </Modal>
-```
-- Modal.vue
-```html
-  <div class="modal">
-    <slot name="links"></slot><!-- here -->
-  </div>
-```
+  </template>
+  ```
+
+- ### named slot
+  - App.vue
+  ```html
+    <Modal theme="sale">
+      <template v-slot:links> <!-- here -->
+        <a href="#">sign up</a>
+        <a href="#">more info</a>
+      </template>
+    </Modal>
+  ```
+  - Modal.vue
+  ```html
+    <div class="modal">
+      <slot name="links"></slot><!-- here -->
+    </div>
+  ```
 
 ## teleport component
 - index.html
@@ -628,104 +633,114 @@ import './assets/global.css';
 
 ## router
 - src/router/index.js
-```javascript
-const routes = [
-  {
-    path: '/jobs',
-    name: 'Jobs',
-    component: Jobs
-  },
-  {
-    path: '/jobs/:id',
-    name: 'JobDetails',
-    component: JobDetails
-  }
-]
-```
+  ```javascript
+  const routes = [
+    {
+      path: '/jobs',
+      name: 'Jobs',
+      component: Jobs
+    },
+    {
+      path: '/jobs/:id',
+      name: 'JobDetails',
+      component: JobDetails
+    }
+  ]
+  ```
 
 - src/App.vue
-```html
-<router-link :to="{ name: 'Jobs' }">Jobs</router-link>
-```
+  ```html
+  <router-link :to="{ name: 'Jobs' }">Jobs</router-link>
+  ```
 
 - src/views/jobs/Jobs.vue
-```html
-  <div v-for="job in jobs" :key="job.id">
-      <router-link :to="{ name: 'JobDetails', params: {id: job.id} }">
-          <h2>{{ job.title }}</h2>
-      </router-link>
-  </div>
-```
+  ```html
+    <div v-for="job in jobs" :key="job.id">
+        <router-link :to="{ name: 'JobDetails', params: {id: job.id} }">
+            <h2>{{ job.title }}</h2>
+        </router-link>
+    </div>
+  ```
 
 - src/views/jobs/JobDetails.vue
-```html
-<p>{{ $route.params.id }}</p>
-```
-```javascript
-export default {
-    data() {
-        return {
-            id: this.$route.params.id
-        }
-    }
-}
-````
+  ```html
+  <template>
+    <p>{{ $route.params.id }}</p>
+  </template>
+
+  <script>
+  export default {
+      data() {
+          return {
+              id: this.$route.params.id
+          }
+      }
+  }
+  </script>
+  ````
 
 ## router props
 - src/router/index.js
-```javascript
-const routes = [
-  {
-    path: '/jobs/:id',
-    name: 'JobDetails',
-    component: JobDetails,
-    props: true /* here */
-  }
-]
-```
+  ```javascript
+  const routes = [
+    {
+      path: '/jobs/:id',
+      name: 'JobDetails',
+      component: JobDetails,
+      props: true /* here */
+    }
+  ]
+  ```
+
 - src/views/jobs/JobDetails.vue
-```html
-<template>
-  <p>{{ id }}</p> <!-- here -->
-</template>
-```
-```javascript
-export default {
-  props: ['id'], /* here */
-}
-```
+  ```html
+  <template>
+    <p>{{ id }}</p> <!-- here -->
+  </template>
+
+  <script>
+  export default {
+    props: ['id'], /* here */
+  }
+  </script>
+  ```
 
 ## redirect
 - src/router/index.js
-```javascript
-const routes = [
-  {
-    path: '/all-jobs',
-    redirect: '/jobs'
-  }
-]
-```
+  ```javascript
+  const routes = [
+    {
+      path: '/all-jobs',
+      redirect: '/jobs'
+    }
+  ]
+  ```
 
 ## 404 page
 - src/router/index.js
-```javascript
-import NotFound from '../views/NotFound.vue'
+  ```javascript
+  // src/router/index.js
+  
+  import NotFound from '../views/NotFound.vue'
 
-const routes = [
-  {
-    path: '/:catchAll(.*)',
-    name: 'NotFound',
-    component: NotFound
-  }
-]
-```
+  const routes = [
+    {
+      path: '/:catchAll(.*)',
+      name: 'NotFound',
+      component: NotFound
+    }
+  ]
+  ```
+
 - src/views/NotFound.vue
-```html
-<template>
-  <h2>404</h2>
-  <h3>Page not found</h3>
-</template>
-```
+  ```html
+  <!-- src/views/NotFound.vue -->
+
+  <template>
+    <h2>404</h2>
+    <h3>Page not found</h3>
+  </template>
+  ```
 
 ## router | redirect, back, forward
 ```javascript
