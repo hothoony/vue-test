@@ -89,6 +89,8 @@ proj-name/
     deactivated() {},
     renderTracked() {},
     renderTriggered() {},
+    beforeDestroy() {},
+    destroyed() {},
   }
 </script>
 ```
