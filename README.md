@@ -113,12 +113,16 @@ export default {
 
 ## computed properties
 - ### filterBlogs
-```javascript
+```html
+<script>
+  export default {
     computed: {
         filterBlogs() {
             return this.blogs.filter(blog => blog.isFav);
         }
     }
+  }
+</script>
 ```
 
 ## for loop
