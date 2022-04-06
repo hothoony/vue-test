@@ -73,7 +73,9 @@ proj-name/
       return {}
     },
     methods: {
-      handleClick() {}
+      handleClick(e) {
+        console.log('handleClick', e.target);
+      }
     },
     // Lifecycle
     beforeCreate() {
