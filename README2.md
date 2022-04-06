@@ -69,28 +69,58 @@ proj-name/
       HomeView,
     },
     props: {},
-    methods: {
-      handleClick() {}
-    },
     data() {
       return {}
     },
+    methods: {
+      handleClick() {}
+    },
     // Lifecycle
-    beforeCreate() {},
-    created() {},
-    beforeMount() {},
-    mounted() {},
-    beforeUpdate() {},
-    updated() {},
-    beforeUnmount() {},
-    unmounted() {},
-    errorCaptured() {},
-    activated() {},
-    deactivated() {},
-    renderTracked() {},
-    renderTriggered() {},
-    beforeDestroy() {},
-    destroyed() {},
+    beforeCreate() {
+      console.log('beforeCreate');
+    },
+    created() {
+      console.log('created');
+    },
+    beforeMount() {
+      console.log('beforeMount');
+    },
+    mounted() {
+      console.log('mounted');
+    },
+    beforeUpdate() {
+      console.log('beforeUpdate');
+    },
+    updated() {
+      console.log('updated');
+    },
+    beforeUnmount() {
+      console.log('beforeUnmount');
+    },
+    unmounted() {
+      console.log('unmounted');
+    },
+    errorCaptured() {
+      console.log('errorCaptured');
+    },
+    activated() {
+      console.log('activated');
+    },
+    deactivated() {
+      console.log('deactivated');
+    },
+    renderTracked() {
+      console.log('renderTracked');
+    },
+    renderTriggered() {
+      console.log('renderTriggered');
+    },
+    beforeDestroy() {
+      console.log('beforeDestroy');
+    },
+    destroyed() {
+      console.log('destroyed');
+    },
   }
 </script>
 ```
