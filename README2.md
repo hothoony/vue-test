@@ -70,11 +70,19 @@ proj-name/
     },
     props: [],
     data() {
-      return {}
+      return {
+        appTitle: '앱 제목',
+      }
     },
     methods: {
       handleClick(e) {
         console.log('handleClick', e.target);
+        console.log(this.appTitle);
+      }
+    },
+    watch: {
+      appTitle() {
+        console.log('watch appTitle', appTitle);
       }
     },
     // Lifecycle Hook
