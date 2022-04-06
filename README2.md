@@ -68,7 +68,7 @@ proj-name/
     components: {
       HomeView,
     },
-    props: {},
+    props: [],
     data() {
       return {}
     },
