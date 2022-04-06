@@ -748,6 +748,8 @@ $ json-server --watch data/db.json --port 3000
 ## fetch data list
 - src/views/Jobs.vue
 ```html
+<!-- src/views/Jobs.vue -->
+
 <template>
   <h1>Jobs</h1>
   <div v-for="job in jobs" :key="job.id"> <!-- here -->
@@ -777,6 +779,8 @@ export default {
 ## fetch data detail
 - src/views/jobs/JobDetails.vue
 ```html
+<!-- src/views/jobs/JobDetails.vue -->
+
 <template>
   <h1>JobDetails</h1>
   <!-- <p>{{ $route.params.id }}</p> -->
