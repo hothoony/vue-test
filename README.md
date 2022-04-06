@@ -67,7 +67,7 @@ export default {
 </style>
 ```
 
-## `<script>` 블럭 구조
+## &lt;script&gt; 블럭 구조
 ```html
 <script>
 import HomeView from './views/HomeView.vue';
@@ -145,8 +145,8 @@ export default {
 ```
 
 ## vue 제작 형태
-- SPA
 - Widget
+- SPA
 
 ## vue widget
 - ### index.html
@@ -182,7 +182,11 @@ const app = Vue.createApp({
 app.mount('#app');
 ```
 
-## binding
+## 2-way data binding
+- input 에 값을 입력하면 model 의 값이 변경된다
+- model 값이 변경되면 input 의 내용도 변경된다
+
+## data binding
 - `{{ variable }}`
 ```html
 <template>
@@ -218,6 +222,35 @@ export default {
       myStyle: 'color: red;', // myStyle 정의
     }
   },
+}
+</script>
+```
+
+## form data binding
+- `v-model=""`
+```html
+<!-- v-model 을 사용 -->
+<template>
+  <form>
+      <label>Email:</label>
+      <input type="email" required v-model="email"> <!-- here -->
+  </form>
+  <p>{{ email }}</p>
+  <button @click="handleClick">click me</button>
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+            email: '' // here
+        };
+    },
+    methods: {
+        handleClick() {
+            this.email = 'aa'; // here
+        }
+    }
 }
 </script>
 ```
@@ -302,7 +335,6 @@ export default {
 
 ## component 만들기, 사용하기
 - ### Modal.vue 컴포넌트 만들기
-  - editor 에서 'vue' 타이핑하고 tab 키 입력
 ```html
 <!-- src/components/Modal.vue -->
 <template>
@@ -332,9 +364,8 @@ export default {
 </script>
 ```
 
-## props
-- ### 자식 컴포넌트에 데이터 전달
-  - App.vue
+## 자식 컴포넌트에 데이터 전달 (props 사용)
+- 부모 Component
   ```html
   <!-- App.vue -->
   <template>
@@ -352,7 +383,7 @@ export default {
   }
   </script>
   ```
-  - Modal.vue
+- 자식 Component
   ```html
   <!-- Modal.vue -->
   <template>
@@ -371,8 +402,8 @@ export default {
   </script>
   ```
 
-- ### binding 변수로 전달
-  - App.vue
+## 자식 컴포넌트에 데이터 전달 (binding 변수 사용)
+- 부모 Component
   ```html
   <!-- App.vue -->
   <template>
@@ -396,7 +427,7 @@ export default {
   }
   </script>
   ```
-  - Modal.vue
+- 자식 Component
   ```html
   <!-- Modal.vue -->
   <template>
@@ -413,15 +444,15 @@ export default {
       props: ['header', 'message'] // here
   }
   ```
-- ### dynamic css class 전달
-  - App.vue
+## 자식 컴포넌트에 dynamic css class 전달
+- 부모 Component
   ```html
   <!-- App.vue -->
   <template>
     <Modal :header="header" :message="message" theme="sale" /> <!-- here -->
   </template>
   ```
-  - Modal.vue
+- 자식 Component
   ```html
   <!-- Modal.vue -->
   <template>
@@ -450,60 +481,60 @@ export default {
 
 ## 자식 컴포넌트에서 event 발생시키기
 - `this.$emit('close');`
-- Modal.vue
-```html
-<!-- Modal.vue -->
-<template>
-    <div class="backdrop" @click="closeModal"> <!-- here -->
-        <div class="modal">
-            <h1>{{ header }}</h1>
-            <p>{{ message }}</p>
-        </div>
-    </div>    
-</template>
+- 자식 Component
+  ```html
+  <!-- Modal.vue -->
+  <template>
+      <div class="backdrop" @click="closeModal"> <!-- here -->
+          <div class="modal">
+              <h1>{{ header }}</h1>
+              <p>{{ message }}</p>
+          </div>
+      </div>    
+  </template>
 
-<script>
-export default {
-    props: ['header', 'message'],
+  <script>
+  export default {
+      props: ['header', 'message'],
+      methods: {
+          closeModal() {
+              this.$emit('close'); // here, close 이벤트 발생
+          }
+      }
+  }
+  </script>
+  ```
+- 부모 Component
+  ```html
+  <!-- App.vue -->
+  <template>
+    <div v-if="showModal">
+      <Modal @close="toggleModal" /> <!-- here, close 이벤트 리스닝 -->
+    </div>
+    <button @click="toggleModal">show modal</button>
+  </template>
+
+  <script>
+  import Modal from './components/Modal.vue'
+
+  export default {
+    name: 'App',
+    components: {
+      Modal
+    },
+    data() {
+      return {
+        showModal: false,
+      }
+    },
     methods: {
-        closeModal() {
-            this.$emit('close'); // here, close 이벤트 발생
-        }
-    }
-}
-</script>
-```
-- App.vue
-```html
-<!-- App.vue -->
-<template>
-  <div v-if="showModal">
-    <Modal @close="toggleModal" /> <!-- here, close 이벤트 리스닝 -->
-  </div>
-  <button @click="toggleModal">show modal</button>
-</template>
-
-<script>
-import Modal from './components/Modal.vue'
-
-export default {
-  name: 'App',
-  components: {
-    Modal
-  },
-  data() {
-    return {
-      showModal: false,
-    }
-  },
-  methods: {
-    toggleModal() { // here
-      this.showModal = !this.showModal;
+      toggleModal() { // here
+        this.showModal = !this.showModal;
+      }
     }
   }
-}
-</script>
-```
+  </script>
+  ```
 
 ## style scoped
 ```html
@@ -576,36 +607,6 @@ import './assets/global.css';
       <p>modal2 content</p>
     </Modal>
   </teleport>
-```
-
-## 2-way data binding
-- input 에 값을 입력하면 model 의 값이 변경된다
-- model 값이 변경되면 input 의 내용도 변경된다
-```html
-<!-- v-model 을 사용 -->
-<template>
-  <form>
-      <label>Email:</label>
-      <input type="email" required v-model="email"> <!-- here -->
-  </form>
-  <p>{{ email }}</p>
-  <button @click="handleClick">click me</button>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            email: '' // here
-        };
-    },
-    methods: {
-        handleClick() {
-            this.email = 'aa'; // here
-        }
-    }
-}
-</script>
 ```
 
 ## form submit (prevent default)
