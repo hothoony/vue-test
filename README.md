@@ -57,7 +57,7 @@ vue-proj-name/
 ```
 
 ## .vue 파일 구조
-- ### 3개 블럭으로 구성
+- 3개 블럭으로 구성
 ```html
 <template>
 </template>
@@ -81,7 +81,9 @@ export default {
   components: {
     HomeView,
   },
-  props: [],
+  props: [
+    
+  ],
   data() {
     return {
       appTitle: '앱 제목',
@@ -92,6 +94,9 @@ export default {
       console.log('handleClick', e.target);
       console.log(this.appTitle);
     }
+  },
+  computed: {
+
   },
   watch: {
     appTitle() {
