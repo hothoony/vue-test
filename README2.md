@@ -77,7 +77,7 @@ proj-name/
         console.log('handleClick', e.target);
       }
     },
-    // Lifecycle
+    // Lifecycle Hook
     beforeCreate() {
       console.log('beforeCreate');
     },
