@@ -1,6 +1,13 @@
 <details>
   <summary>for details...</summary>
+  - 11
+  ```
   details content here
+  ```
+  - 22
+  ```
+  <html></html>
+  ```
 </details>
 
 
