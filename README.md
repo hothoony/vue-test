@@ -603,10 +603,12 @@ export default {
 </template>
 
 <script>
-  methods: {
-      handleSubmit() {
-          console.log('handleSubmit');
-      }
+  export default {
+    methods: {
+        handleSubmit() {
+            console.log('handleSubmit');
+        }
+    }
   }
 </script>
 ```
